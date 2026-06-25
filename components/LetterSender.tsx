@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect, useMemo } from "react";
+import Link from "next/link";
 import {
   THEMES, FONTS, PRESETS, ThemeKey, FontKey, Custom, LetterState,
   paletteFor, fontFamilyFor, makeLink, plainText, encodeLetter,
@@ -140,6 +141,13 @@ export default function LetterSender() {
       <main style={{ padding: "26px 24px 26px", display: "flex", flexDirection: "column",
         alignItems: "center", background: pal.paper, height: "100%", minHeight: 0, overflow: "hidden" }}>
 
+        {/* back to home */}
+        <div style={{ flexShrink: 0, width: "100%", maxWidth: 640, display: "flex",
+          justifyContent: "flex-end", marginBottom: 12 }}>
+          <Link href="/" style={{ fontFamily: FONTS.sans, fontWeight: 700, fontSize: 14,
+            letterSpacing: ".04em", color: pal.soft, textDecoration: "none" }}>← little letters</Link>
+        </div>
+
         {/* toolbar (fixed) */}
         <div style={{ flexShrink: 0, display: "flex", gap: 4, background: pal.accent + "22", borderRadius: 999, padding: 6, marginBottom: 18 }}>
           <Tool onClick={() => edRef.current?.format("bold")} pal={pal} disabled={previewMode}><b>b</b></Tool>
@@ -213,3 +221,5 @@ export default function LetterSender() {
     </div>
   );
 }
+
+
