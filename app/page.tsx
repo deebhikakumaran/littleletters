@@ -16,20 +16,24 @@ export default function LandingPage() {
 
         {/* peekaboo link — sits in the white strip, centered */}
         <Link href="/about" style={{ position: "absolute", bottom: "28%", left: "50%",
-          transform: "translateX(-50%)", fontFamily: FONTS.sans, fontWeight: 600, fontSize: 15,
-          letterSpacing: ".08em", color: "#2e2a26", textDecoration: "none", opacity: .75 }}>
+          transform: "translateX(-50%)", fontFamily: FONTS.sans, fontWeight: 600,
+          fontSize: "clamp(12px, 2.4vw, 15px)", letterSpacing: ".08em", whiteSpace: "nowrap",
+          color: "#2e2a26", textDecoration: "none", opacity: .75 }}>
           [ peekaboo ]
         </Link>
 
         {/* begin button — overlaps the bottom edge */}
-        <Link href="/editor" style={{ position: "absolute", bottom: 18, left: "50%",
-          transform: "translateX(-50%)", fontFamily: FONTS.sans, fontWeight: 700, fontSize: 18,
-          textTransform: "lowercase", background: "#2e2a26", color: "#fbf7f2", textDecoration: "none",
-          padding: "16px 46px", borderRadius: 999, boxShadow: "0 12px 30px rgba(0,0,0,.25)" }}>
+        <Link href="/editor" style={{ position: "absolute", bottom: "4%", left: "50%",
+          transform: "translateX(-50%)", fontFamily: FONTS.sans, fontWeight: 700,
+          fontSize: "clamp(12px, 2vw, 18px)",
+          textTransform: "lowercase", whiteSpace: "nowrap",
+          background: "#2e2a26", color: "#fbf7f2", textDecoration: "none",
+          padding: "clamp(8px, 1.6vw, 16px) clamp(20px, 4.5vw, 46px)",
+          borderRadius: 999,
+          boxShadow: "0 12px 30px rgba(0,0,0,.25)" }}>
           begin
         </Link>
       </div>
     </div>
   );
 }
-
