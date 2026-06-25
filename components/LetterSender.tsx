@@ -81,10 +81,27 @@ export default function LetterSender() {
   };
   const copyLink = () => copyText(makeLink(state()), () => flash("link copied — send it to your person ✿"));
   const openShare = () => { if (!plain.trim()) return flash("write a little something first ✿"); setShareOpen(true); };
-  const sendEmail = () => {
-    const subj = encodeURIComponent("a little letter" + (to ? " for " + to : ""));
-    const b = encodeURIComponent("i wrote you something:\n\n" + makeLink(state()));
-    window.location.href = `mailto:?subject=${subj}&body=${b}`;
+
+  const sendEmail = async () => {
+    const from = prompt("leave a name to be known, or skip to stay a ghost."); 
+    const toEmail = prompt("send to which email?"); 
+    if (!toEmail) return;
+    flash("sending…");
+    try {
+      const res = await fetch("/api/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ toEmail, fromName: from, link: makeLink(state()) }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        flash("sent ✿");
+        setShareOpen(false); 
+      }
+      else flash("couldn't send — try the link instead");
+    } catch {
+      flash("couldn't send — try the link instead");
+    }
   };
 
   // ── the controls panel (shared between desktop sidebar and mobile drawer) ──
